@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bankautomat</title>
+    <style>
+      .overdraft {
+        color: red;
+      }
+    </style>
+    <script>
+      var balance = 0;
+      var element = 0;
+      var amount = 0;
+
+      //Ein- / Auszahlung über Button
+      function withdraw() {
+        if (balance <= -100) {
+          alert(
+            "Du bist bereits mit " +
+              balance +
+              "€ im Minus und kannst keine Auszahlung mehr tätigen!"
+          );
+        } else {
+          balance -= 100;
+          updateBalance();
+        }
+        console.log(balance);
+      }
+
+      function deposit() {
+        if (balance < 1000) {
+          balance += 100;
+          updateBalance();
+        } else {
+          alert("Dein Einzahlungs-Maximum ist erreicht!");
+        }
+        console.log(balance);
+      }
+
+      //Ein- / Auszahlung über InputField
+      function withdrawAmount() {
+        if (balance - document.getElementById("amount").value < -100) {
+          alert(
+            "Dein Kontostand beträgt " +
+              balance +
+              "€. Das Minus von 100€ kann nicht unterschritten werden. Du kannst diese Auszahlung nicht tätigen!"
+          );
+        } else {
+          amount = document.getElementById("amount").value;
+          balance -= amount;
+          updateBalance();
+        }
+        console.log(balance);
+      }
+
+      function depositAmount() {
+        if (balance + Number(document.getElementById("amount").value) <= 1000) {
+          amount = document.getElementById("amount").value;
+          balance += Number(amount);
+          updateBalance();
+        } else {
+          alert(
+            "Dein Einzahlungs-Maximum liegt bei 1.000€! Du kannst diesen Betrag nicht einzahlen, da dein Maximum dann überschritten wird."
+          );
+        }
+        console.log(balance);
+      }
+
+      //Kontostand aktualisieren
+      function updateBalance() {
+        element = document.getElementById("balance").innerHTML = balance;
+        changeColor();
+      }
+
+      //Klasse modifizieren
+      function changeColor() {
+        if (balance < 0) {
+          document.getElementById("negativeBalance").classList.add("overdraft");
+        } else {
+          document
+            .getElementById("negativeBalance")
+            .classList.remove("overdraft");
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <button onclick="withdraw()">100€ Auszahlen</button>
+    <span id="negativeBalance">Kontostand: <span id="balance">0</span>€</span>
+    <button onclick="deposit()">100€ Einzahlen</button>
+    <p>Oder freien Betrag wählen</p>
+    <input type="number" id="amount" />
+    <br />
+    <br />
+    <button onclick="withdrawAmount()">Auszahlen</button>
+    <span> / </span>
+    <button onclick="depositAmount()">Einzahlen</button>
+  </body>
+</html>

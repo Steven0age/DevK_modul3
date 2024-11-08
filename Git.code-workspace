@@ -1,0 +1,13 @@
+{
+  "folders": [
+	{
+		"path": "../Git"
+	},
+	{
+		"path": "../.."
+	}
+],
+  "settings": {
+    "liveServer.settings.multiRootWorkspaceName": "Programmieren lernen"
+  }
+}
