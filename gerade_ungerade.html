@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>gerade-ungerade</title>
+    <script>
+      function checkNumber() {
+        var start = document.getElementById("startNumber").value;
+        var end = document.getElementById("endNumber").value;
+
+        var countEven = 0;
+        var countOdd = 0;
+
+        if (start > end) {
+          alert("Die Startzahl ist größer als die Endzahl!");
+        } else {
+          while (start <= end) {
+            if (start % 2 === 0) {
+              console.log("Die Zahl " + start + " ist gerade.");
+              countEven++;
+            } else {
+              console.log("Die Zahl " + start + " ist ungerade.");
+              countOdd++;
+            }
+            start++;
+          }
+
+          console.log(countEven + " Zahlen sind gerade");
+          console.log(countOdd + " Zahlen sind ungerade");
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <p>
+      <span>Startzahl:</span>
+      <input type="number" id="startNumber" />
+    </p>
+    <p>
+      <span>Endzahl:</span>
+      <input type="number" id="endNumber" />
+    </p>
+    <button onclick="checkNumber()">Start</button>
+  </body>
+</html>
